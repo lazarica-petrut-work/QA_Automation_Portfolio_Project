@@ -1,7 +1,7 @@
 import unittest
 
 from HTMLTestRunner.runner import HTMLTestRunner
-from Unit_Test import TestCase
+from Unit_Tests import TestCase
 
 
 # Test Suit Class
@@ -17,11 +17,14 @@ class TestingClass(unittest.TestCase):
         ])
 
         # Test Runner HTML Report
-        my_test_runnner = HTMLTestRunner(
+        my_test_runner = HTMLTestRunner(
             output = "report",
             title = "Test report",
             report_name = "report",
             tested_by = "Lazarica Petrut"
         )
 
-        my_test_runnner.run(my_test_suit)
+        my_test_runner.run(my_test_suit)
+
+if __name__ == "__main__":
+    unittest.main()
