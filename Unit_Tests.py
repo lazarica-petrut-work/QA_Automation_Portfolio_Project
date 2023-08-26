@@ -87,6 +87,12 @@ class TestCase(unittest.TestCase):
             page_check = True
         assert page_check == True
 
+    def test_Checkbox(self):
+        self.driver.find_element(By.LINK_TEXT, "Checkboxes").click()
+        checkbox = self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/form/input[1]")
+        checkbox.click()
+        is_checked = checkbox.is_selected()
+        assert is_checked
 
 
 
