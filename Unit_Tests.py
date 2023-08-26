@@ -73,6 +73,19 @@ class TestCase(unittest.TestCase):
             number_of_present_elements -= 1
         assert number_of_present_elements == 0
 
+    def test_Basic_Authentication_Popup(self):
+        #Login
+        username = "admin"
+        password = "admin"
+        url = "http://"+ username +":"+ password + "@the-internet.herokuapp.com/basic_auth"
+        self.driver.get(url)
+        #Check
+        string_variable = self.driver.find_element(By.CLASS_NAME, "example").text
+        string_check = "Basic Auth"
+        page_check = False
+        if string_check in string_variable:
+            page_check = True
+        assert page_check == True
 
 
 
