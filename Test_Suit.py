@@ -4,7 +4,6 @@ from HTMLTestRunner.runner import HTMLTestRunner
 from Unit_Tests import TestCase
 
 
-
 # Test Suit Class
 class TestingClass(unittest.TestCase):
 
