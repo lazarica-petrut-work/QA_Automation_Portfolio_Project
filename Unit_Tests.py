@@ -4,6 +4,7 @@ import unittest
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
 #Chrome
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
@@ -94,9 +95,24 @@ class TestCase(unittest.TestCase):
         is_checked = checkbox.is_selected()
         assert is_checked
 
+    def test_Context_Menu(self):
+        self.driver.find_element(By.LINK_TEXT, "Context Menu").click()
+        context_box = self.driver.find_element(By.ID, "hot-spot")
+        actions = ActionChains(self.driver)
+        actions.context_click(context_box).perform()
+        self.driver.switch_to.alert.accept()
 
-
-
+    def test_Digest_Authentication(self):
+        #Login
+        self.driver.get("http://admin:admin@the-internet.herokuapp.com/digest_auth")
+        # Check
+        string_variable = self.driver.find_element(By.CLASS_NAME, "example").text
+        string_check = "Digest Auth"
+        page_check = False
+        if string_check in string_variable:
+            page_check = True
+        assert page_check == True
+        time.sleep(2)
 
 
 
