@@ -2,6 +2,7 @@ import time
 import unittest
 
 from selenium import webdriver
+from selenium.common import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
@@ -114,8 +115,20 @@ class TestCase(unittest.TestCase):
         assert page_check == True
         time.sleep(2)
 
-    def
-
+    def test_Disappearing_Elements(self):
+        self.driver.find_element(By.LINK_TEXT, "Disappearing Elements").click()
+        garllery_was_found = False
+        while garllery_was_found == False:
+            try:
+                gallery_element = self.driver.find_element(By.LINK_TEXT, "Gallery").text
+                if gallery_element == "Gallery":
+                    garllery_was_found = True
+                    print(gallery_element)
+                    time.sleep(0.3)
+            except NoSuchElementException:
+                self.driver.refresh()
+                time.sleep(1)
+        assert garllery_was_found == True
 
 
 
