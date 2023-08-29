@@ -123,13 +123,20 @@ class TestCase(unittest.TestCase):
                 gallery_element = self.driver.find_element(By.LINK_TEXT, "Gallery").text
                 if gallery_element == "Gallery":
                     garllery_was_found = True
-                    print(gallery_element)
-                    time.sleep(0.3)
             except NoSuchElementException:
                 self.driver.refresh()
-                time.sleep(1)
         assert garllery_was_found == True
 
+    def test_Drag_and_Drop(self):
+        self.driver.find_element(By.LINK_TEXT, "Drag and Drop").click()
+        box_a = self.driver.find_element(By. ID, "column-a")
+        box_b = self.driver.find_element(By. ID, "column-b")
+        time.sleep(1)
+        actions = ActionChains(self.driver)
+        actions.drag_and_drop(box_a, box_b).perform()
+        time.sleep(1)
+        print(box_a.text)
+        print(box_b.text)
 
 
 
