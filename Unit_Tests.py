@@ -113,30 +113,33 @@ class TestCase(unittest.TestCase):
         if string_check in string_variable:
             page_check = True
         assert page_check == True
-        time.sleep(2)
 
-    def test_Disappearing_Elements(self):
-        self.driver.find_element(By.LINK_TEXT, "Disappearing Elements").click()
-        garllery_was_found = False
-        while garllery_was_found == False:
-            try:
-                gallery_element = self.driver.find_element(By.LINK_TEXT, "Gallery").text
-                if gallery_element == "Gallery":
-                    garllery_was_found = True
-            except NoSuchElementException:
-                self.driver.refresh()
-        assert garllery_was_found == True
 
-    def test_Drag_and_Drop(self):
-        self.driver.find_element(By.LINK_TEXT, "Drag and Drop").click()
-        box_a = self.driver.find_element(By. ID, "column-a")
-        box_b = self.driver.find_element(By. ID, "column-b")
-        time.sleep(1)
-        actions = ActionChains(self.driver)
-        actions.drag_and_drop(box_a, box_b).perform()
-        time.sleep(1)
-        print(box_a.text)
-        print(box_b.text)
+    def test_Login_Page(self):
+        self.driver.find_element(By.LINK_TEXT, "Form Authentication").click()
+        #Login
+        username = self.driver.find_element(By.ID, "username")
+        password = self.driver.find_element(By.ID, "password")
+        username.send_keys("tomsmith")
+        password.send_keys("SuperSecretPassword!")
+        self.driver.find_element(By.CLASS_NAME, "radius").click()
+        #Check
+        assert self.driver.current_url == "http://the-internet.herokuapp.com/secure"
+
+
+    def test_Horizontal_Slider(self):
+        self.driver.find_element(By.LINK_TEXT, "Horizontal Slider").click()
+        slider = self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div/input[value = '3']")
+        #slider_value = slider.get_attribute("value ")
+        print(slider)
+        #slider.__setattr__("value", 3)
+
+
+
+
+
+    def test_Hovers(self):
+        pass
 
 
 
