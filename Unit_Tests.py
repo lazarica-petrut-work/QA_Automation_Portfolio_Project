@@ -6,6 +6,7 @@ from selenium.common import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver import Keys
 #Chrome
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
@@ -127,18 +128,31 @@ class TestCase(unittest.TestCase):
         assert self.driver.current_url == "http://the-internet.herokuapp.com/secure"
 
 
-    def test_Horizontal_Slider(self):
-        self.driver.find_element(By.LINK_TEXT, "Horizontal Slider").click()
-        slider = self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div/input[value = '3']")
-        #slider_value = slider.get_attribute("value ")
-        print(slider)
-        #slider.__setattr__("value", 3)
+    def test_Key_Presses(self):
+        self.driver.find_element(By.LINK_TEXT, "Key Presses").click()
+        self.driver.find_element(By.ID, "target").send_keys(Keys.SHIFT)
+        self.driver.find_element(By.ID, "target").send_keys(Keys.TAB)
+        result_check = self.driver.find_element(By.ID, "result").text
+        assert result_check == "You entered: TAB", "A different key was pressed."
 
 
 
+    def test_Multiple_Windows(self):
+        pass
 
+    def test_Notification_Messages(self):
+        pass
 
-    def test_Hovers(self):
+    def test_Redirect_Link(self):
+        pass #Poate
+
+    def test_Slow_Resources(self):
+        pass #Poate
+
+    def test_Typos(self):
+        pass
+
+    def test_WYSIWYG_Editor(self):
         pass
 
 
