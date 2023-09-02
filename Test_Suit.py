@@ -1,7 +1,7 @@
 import unittest
 
 from HTMLTestRunner.runner import HTMLTestRunner
-from Unit_Tests import TestCase
+from Herokuapp_Unit_Tests import TestCase
 
 
 # Test Suit Class

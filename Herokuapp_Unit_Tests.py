@@ -1,4 +1,3 @@
-import time
 import unittest
 
 from selenium import webdriver
@@ -31,21 +30,18 @@ class TestCase(unittest.TestCase):
         self.driver.get("http://the-internet.herokuapp.com/")
         self.wait = WebDriverWait(self.driver, 10)
 
-
 ###################################################
-    # Testing Site Variation
-    def test_A_B_Variation(self):
+
+    def test_A_B_Variation(self): # Testing Site Variation
         self.driver.find_element(By.LINK_TEXT, "A/B Testing").click()
-        #time.sleep(1)
         variation_text = self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/h3").text
-        #print(variation_text)
         if variation_text == "A/B Test Variation 1":
             assert variation_text == "A/B Test Variation 1" , "Variation 1 was tested!"
         elif variation_text == "A/B Test Control":
             assert variation_text == "A/B Test Control" , "Variation 2 was tested!"
         else:
             self.fail("Neither of the variations were found")
-        #print(variation_text)
+
 
     def test_Add_Elements(self):
         self.driver.find_element(By.LINK_TEXT, "Add/Remove Elements").click()
@@ -60,6 +56,7 @@ class TestCase(unittest.TestCase):
         for button in number_of_buttons_list:
             number_of_added_elements += 1
         assert number_of_added_elements == number_of_elements
+
 
     def test_Remove_Elements(self):
         self.driver.find_element(By.LINK_TEXT, "Add/Remove Elements").click()
@@ -76,6 +73,7 @@ class TestCase(unittest.TestCase):
             number_of_present_elements -= 1
         assert number_of_present_elements == 0
 
+
     def test_Basic_Authentication_Popup(self):
         #Login
         username = "admin"
@@ -90,6 +88,7 @@ class TestCase(unittest.TestCase):
             page_check = True
         assert page_check == True
 
+
     def test_Checkbox(self):
         self.driver.find_element(By.LINK_TEXT, "Checkboxes").click()
         checkbox = self.driver.find_element(By.XPATH, "/html/body/div[2]/div/div/form/input[1]")
@@ -97,12 +96,14 @@ class TestCase(unittest.TestCase):
         is_checked = checkbox.is_selected()
         assert is_checked
 
+
     def test_Context_Menu(self):
         self.driver.find_element(By.LINK_TEXT, "Context Menu").click()
         context_box = self.driver.find_element(By.ID, "hot-spot")
         actions = ActionChains(self.driver)
         actions.context_click(context_box).perform()
         self.driver.switch_to.alert.accept()
+
 
     def test_Digest_Authentication(self):
         #Login
@@ -154,34 +155,18 @@ class TestCase(unittest.TestCase):
         assert notification_check.__contains__("successful")
 
 
-
-
-
-
-
-
-
-    def test_Redirect_Link(self):
-        pass #Poate
-
-    def test_Slow_Resources(self):
-        pass #Poate
-
-    def test_Typos(self):
-        pass
-
-    def test_WYSIWYG_Editor(self):
-        pass
-
-
-
-
-
-
-
-
-
-
+    def test_Disappearing_Elements(self):
+        self.driver.find_element(By.LINK_TEXT, "Disappearing Elements").click()
+        element_check = "Element not found yet."
+        while element_check != "Gallery":
+            try:
+                self.driver.implicitly_wait(0.1)
+                find_element = self.driver.find_element(By.LINK_TEXT, "Gallery")
+                if element_check != "Gallery":
+                    element_check = find_element.text
+            except NoSuchElementException:
+                self.driver.refresh()
+        assert element_check == "Gallery"
 
 ########################################################
 
