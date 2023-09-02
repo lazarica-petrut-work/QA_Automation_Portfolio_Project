@@ -85,8 +85,20 @@ class SauceDemo_TestCase(unittest.TestCase):
 
 
     def test_Checkout(self):
+        self.Login()
+        self.driver.find_element(By.ID, "add-to-cart-sauce-labs-backpack").click()
+        self.driver.find_element(By.CLASS_NAME, "shopping_cart_link").click()
+        self.driver.find_element(By.ID, "checkout").click()
+        self.driver.find_element(By.ID, "first-name").send_keys("Hello")
+        self.driver.find_element(By.ID, "last-name").send_keys("World")
+        self.driver.find_element(By.ID, "postal-code").send_keys("123")
+        self.driver.find_element(By.ID, "continue").click()
+        self.driver.find_element(By.ID, "finish").click()
+        assert self.driver.current_url == "https://www.saucedemo.com/checkout-complete.html"
 
-        pass
+
+
+
 
 
 
