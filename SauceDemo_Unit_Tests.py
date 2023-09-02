@@ -38,12 +38,55 @@ class SauceDemo_TestCase(unittest.TestCase):
         self.driver.find_element(By.ID, "login-button").click()
 
 
-    def test_login(self):
-        time.sleep(1)
+    def Item_Selector(self, item_name):
+        #Login
         self.Login()
-        time.sleep(1)
+        #Item Search
+        item_list = self.driver.find_elements(By.CLASS_NAME, "inventory_item_name")
+        for item in item_list:
+            if item.text == item_name:
+                item.click()
+                break
+        #Add to cart
+        self.driver.find_element(By.XPATH, "/html/body/div/div/div/div[2]/div/div/div[2]/button").click()
+        self.driver.find_element(By.CLASS_NAME,"shopping_cart_link").click()
+        cart_item = self.driver.find_element(By.CLASS_NAME, "inventory_item_name").text
+        #Assert
+        assert item_name == cart_item
 
 
+    def test_Login(self):
+        self.Login()
+        assert self.driver.current_url == "https://www.saucedemo.com/inventory.html"
+
+
+    def test_Sauce_Labs_Backpack(self):
+        self.Item_Selector("Sauce Labs Backpack")
+
+
+    def test_Sauce_Labs_Bike_Light(self):
+        self.Item_Selector("Sauce Labs Bike Light")
+
+
+    def test_Sauce_Labs_Bolt_T_Shirt(self):
+        self.Item_Selector("Sauce Labs Bolt T-Shirt")
+
+
+    def test_Sauce_Labs_Fleece_Jacket(self):
+        self.Item_Selector("Sauce Labs Fleece Jacket")
+
+
+    def test_Sauce_Labs_Onesie(self):
+        self.Item_Selector("Sauce Labs Onesie")
+
+
+    def test_Test_allTheThings_T_Shirt_Red(self):
+        self.Item_Selector("Test.allTheThings() T-Shirt (Red)")
+
+
+    def test_Checkout(self):
+
+        pass
 
 
 
