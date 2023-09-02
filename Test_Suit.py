@@ -1,7 +1,8 @@
 import unittest
 
 from HTMLTestRunner.runner import HTMLTestRunner
-from Herokuapp_Unit_Tests import TestCase
+from Herokuapp_Unit_Tests import Herokuapp_TestCase
+from SauceDemo_Unit_Tests import SauceDemo_TestCase
 
 
 # Test Suit Class
@@ -11,8 +12,8 @@ class TestingClass(unittest.TestCase):
     def test_suit(self):
         my_test_suit = unittest.TestSuite()
         my_test_suit.addTests([
-            unittest.defaultTestLoader.loadTestsFromTestCase(TestCase),
-            #unittest.defaultTestLoader.loadTestsFromTestCase(TestCase2)#,
+            unittest.defaultTestLoader.loadTestsFromTestCase(Herokuapp_TestCase),
+            unittest.defaultTestLoader.loadTestsFromTestCase(SauceDemo_TestCase)#,
             #unittest.defaultTestLoader.loadTestsFromTestCase(EasyTest)
         ])
 

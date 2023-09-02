@@ -14,7 +14,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 
 
-class TestCase(unittest.TestCase):
+class Herokuapp_TestCase(unittest.TestCase):
 
     # Setup for Unittest TestCase
     @classmethod
