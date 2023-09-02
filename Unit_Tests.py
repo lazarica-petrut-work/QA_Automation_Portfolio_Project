@@ -136,12 +136,30 @@ class TestCase(unittest.TestCase):
         assert result_check == "You entered: TAB", "A different key was pressed."
 
 
-
     def test_Multiple_Windows(self):
-        pass
+        self.driver.find_element(By.LINK_TEXT, "Multiple Windows").click()
+        self.driver.find_element(By.LINK_TEXT, "Click Here").click()
+        window_handles = self.driver.window_handles
+        self.driver.switch_to.window(window_handles[1])
+        page_check = self.driver.find_element(By.XPATH, "/html/body/div/h3").text
+        assert page_check == "New Window"
+
 
     def test_Notification_Messages(self):
-        pass
+        self.driver.find_element(By.LINK_TEXT, "Notification Messages").click()
+        notification_check = self.driver.find_element(By.ID, "flash").text
+        while "Action successful" not in notification_check:
+            self.driver.find_element(By.LINK_TEXT, "Click here").click()
+            notification_check = self.driver.find_element(By.ID, "flash").text
+        assert notification_check.__contains__("successful")
+
+
+
+
+
+
+
+
 
     def test_Redirect_Link(self):
         pass #Poate
