@@ -9,9 +9,7 @@ from selenium.webdriver import Keys
 #Chrome
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
-#Firefox
-from selenium.webdriver.firefox.service import Service as FirefoxService
-from webdriver_manager.firefox import GeckoDriverManager
+
 
 from selenium.webdriver.common.by import By
 
@@ -23,8 +21,6 @@ class TestCase(unittest.TestCase):
     def setUp(self):
         ChromeService(ChromeDriverManager().install())
         self.driver = webdriver.Chrome()
-        #FirefoxService(GeckoDriverManager().install())
-        #self.driver = webdriver.Firefox()
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
         self.driver.get("http://the-internet.herokuapp.com/")
