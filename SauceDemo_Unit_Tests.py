@@ -1,18 +1,11 @@
-import time
 import unittest
 
 from selenium import webdriver
-from selenium.common import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver import Keys
+from selenium.webdriver.common.by import By
 #Chrome
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
-
-
-from selenium.webdriver.common.by import By
 
 
 class SauceDemo_TestCase(unittest.TestCase):
@@ -95,15 +88,6 @@ class SauceDemo_TestCase(unittest.TestCase):
         self.driver.find_element(By.ID, "continue").click()
         self.driver.find_element(By.ID, "finish").click()
         assert self.driver.current_url == "https://www.saucedemo.com/checkout-complete.html"
-
-
-
-
-
-
-
-
-
 
 ########################################################
 

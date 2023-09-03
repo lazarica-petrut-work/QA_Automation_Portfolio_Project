@@ -6,12 +6,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver import Keys
+from selenium.webdriver.common.by import By
 #Chrome
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
-
-
-from selenium.webdriver.common.by import By
 
 
 class Herokuapp_TestCase(unittest.TestCase):
