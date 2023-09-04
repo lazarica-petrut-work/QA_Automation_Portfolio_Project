@@ -13,8 +13,7 @@ class TestingClass(unittest.TestCase):
         my_test_suit = unittest.TestSuite()
         my_test_suit.addTests([
             unittest.defaultTestLoader.loadTestsFromTestCase(Herokuapp_TestCase),
-            unittest.defaultTestLoader.loadTestsFromTestCase(SauceDemo_TestCase)#,
-            #unittest.defaultTestLoader.loadTestsFromTestCase(EasyTest)
+            unittest.defaultTestLoader.loadTestsFromTestCase(SauceDemo_TestCase)
         ])
 
         # Test Runner HTML Report
